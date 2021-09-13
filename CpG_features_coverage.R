@@ -12,6 +12,7 @@ colnames(df) = c("Chr", "Start", "End", "Annotation", file_names) #rename column
 #Add length and type column
 df <- add_column(df, Length = df$End - df$Start + 1, .after = "End")
 df <- separate(df, "Annotation", "Type", sep = ":", remove = FALSE)
+#df is raw sequence read for DESeq2
 
 #TPM normalization
 df_TPM <- df
