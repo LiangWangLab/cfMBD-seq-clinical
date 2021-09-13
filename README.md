@@ -37,3 +37,5 @@ Rtsne (Version 0.15).
 ```Rscript CpG_features_coverage.R```  
 5. Differential methylation analysis.  
 ```Rscript DESeq2.R```   
+6. Identify tissue derived differential methylation from HM450K data.  
+```Rscript minfiHM450K.R```  
