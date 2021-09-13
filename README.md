@@ -39,3 +39,5 @@ Rtsne (Version 0.15).
 ```Rscript DESeq2.R```   
 6. Identify tissue derived differential methylation from HM450K data.  
 ```Rscript minfiHM450K.R```  
+7.Intersection analysis.  
+```Rscript glmnet.R```   
