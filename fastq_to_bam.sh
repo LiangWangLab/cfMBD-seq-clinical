@@ -26,10 +26,10 @@ do
        rm $i.bam.bai      
        echo Index $i        
        samtools index $i.bam
-	   echo Optional-Remove duplicate $i
+       echo Optional-Remove duplicate $i
        samtools sort -@ 10 -m 2g $i.bam -o $i.sort.bam 
-	   samtools markdup -r $i.sort.bam $i.rmdup.bam
+       samtools markdup -r $i.sort.bam $i.rmdup.bam
        samtools index $i.rmdup.bam
-	   rm $i.sort.bam
+       rm $i.sort.bam
        echo $i is completed
 done
