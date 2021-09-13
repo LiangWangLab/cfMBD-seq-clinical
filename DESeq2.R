@@ -69,6 +69,34 @@ png(file="MA-Pancreas vs Non-cancer (CGI).png",width=500, height=500)
 plotMA(Pancreas, ylim=c(-3,3), main = "Pancreas vs Non-cancer (CGI)");dev.off()
 png(file="MA-Colorectal vs Non-cancer (extended CGI).png",width=500, height=500)
 
+#volcano plot
+library(EnhancedVolcano)
+png(file="Volcano-Lung vs Non-cancer (CGI).png",width=500, height=500)
+EnhancedVolcano(Lung, lab = NA, x = "log2FoldChange", y = "padj", ylab = expression('-Log'[10]*' q value'), title = "Lung vs Non-cancer (CGI)", subtitle = "",
+                pCutoff = 0.1, FCcutoff = 1, xlim = c(-3,3), ylim = c(0,5), pointSize = 2, col = c("black","black","blue","red3"), legendLabels = c("NS", "FC", "FDR", "FDR and FC"))
+dev.off()
+png(file="Volcano-Colorectal vs Non-cancer (CGI).png",width=500, height=500)
+EnhancedVolcano(Colorectal, lab = NA, x = "log2FoldChange", y = "padj", ylab = expression('-Log'[10]*' q value'), title = "Colorectal vs Non-cancer (CGI)", subtitle = "",
+                pCutoff = 0.1, FCcutoff = 1, xlim = c(-3,3), ylim = c(0,5), pointSize = 2, col = c("black","black","blue","red3"), legendLabels = c("NS", "FC", "FDR", "FDR and FC"))
+dev.off()
+png(file="Volcano-Pancreas vs Non-cancer (CGI).png",width=500, height=500)
+EnhancedVolcano(Pancreas, lab = NA, x = "log2FoldChange", y = "padj", ylab = expression('-Log'[10]*' q value'), title = "Pancreas vs Non-cancer (CGI)", subtitle = "",
+                pCutoff = 0.1, FCcutoff = 1, xlim = c(-3,3), ylim = c(0,5), pointSize = 2, col = c("black","black","blue","red3"), legendLabels = c("NS", "FC", "FDR", "FDR and FC"))
+dev.off()
+
+png(file="Volcano-Lung vs Non-cancer (extended CGI).png",width=500, height=500)
+EnhancedVolcano(Lung_extended, lab = NA, x = "log2FoldChange", y = "padj", ylab = expression('-Log'[10]*' q value'), title = "Lung vs Non-cancer (extended CGI)", subtitle = "",
+                pCutoff = 0.1, FCcutoff = 1, xlim = c(-3,3), ylim = c(0,5), pointSize = 2, col = c("black","black","blue","red3"), legendLabels = c("NS", "FC", "FDR", "FDR and FC"))
+dev.off()
+png(file="Volcano-Colorectal vs Non-cancer (extended CGI).png",width=500, height=500)
+EnhancedVolcano(Colorectal_extended, lab = NA, x = "log2FoldChange", y = "padj", ylab = expression('-Log'[10]*' q value'), title = "Colorectal vs Non-cancer (extended CGI)", subtitle = "",
+                pCutoff = 0.1, FCcutoff = 1, xlim = c(-3,3), ylim = c(0,5), pointSize = 2, col = c("black","black","blue","red3"), legendLabels = c("NS", "FC", "FDR", "FDR and FC"))
+dev.off()
+png(file="Volcano-Pancreas vs Non-cancer (extended CGI).png",width=500, height=500)
+EnhancedVolcano(Pancreas_extended, lab = NA, x = "log2FoldChange", y = "padj", ylab = expression('-Log'[10]*' q value'), title = "Pancreas vs Non-cancer (extended CGI)", subtitle = "",
+                pCutoff = 0.1, FCcutoff = 1, xlim = c(-3,3), ylim = c(0,5), pointSize = 2, col = c("black","black","blue","red3"), legendLabels = c("NS", "FC", "FDR", "FDR and FC"))
+dev.off()
+
 #vsd
 vsd_Colorectal <- vst(dds_Colorectal, blind=FALSE)
 vsd_Colorectal_df<- data.frame(assay(vsd_Colorectal),check.names = FALSE)
@@ -77,7 +105,52 @@ vsd_Lung_df<- data.frame(assay(vsd_Lung),check.names = FALSE)
 vsd_Pancreas <- vst(dds_Pancreas, blind=FALSE)
 vsd_Pancreas_df<- data.frame(assay(vsd_Pancreas),check.names = FALSE)
 
-#Normalized counts for figure
+#PCA
+library("devtools")
+library("pcaExplorer")
+
+png(file="PCA12-Colorectal vs Non-cancer (CGI).png",width=800, height=400)
+PCA_Colorectal12 <- pcaplot(vsd_Colorectal,intgroup = "Type",ntop = 1000, ellipse = TRUE, returnData = FALSE,
+                            pcX = 1, pcY = 2, text_labels = FALSE, title = "Colorectal DMCGIs PC1 vs PC2")
+PCA_Colorectal12+ylim(-10,10)+xlim(-20,32) + 
+  theme(axis.text = element_text(colour = "black",size = 20),axis.title = element_text(size = 20),plot.title = element_text(size = 22,hjust = 0.5,face = "bold"),panel.border = element_rect(colour = "black", fill=NA, size=1.2),
+        legend.title = element_blank(),legend.text = element_text(colour = "black",size = 18),legend.position = c(.99, .01),legend.justification = c("right", "bottom"),legend.background=element_blank())
+dev.off()
+png(file="PCA12-Lung vs Non-cancer (CGI).png",width=800, height=400)
+PCA_Lung12 <- pcaplot(vsd_Lung,intgroup = "Type",ntop = 1000, ellipse = TRUE, returnData = FALSE,
+                      pcX = 1, pcY = 2, text_labels = FALSE, title = "Lung DMCGIs PC1 vs PC2")
+PCA_Lung12+ylim(-10,10)+xlim(-20,32) + 
+  theme(axis.text = element_text(colour = "black",size = 20),axis.title = element_text(size = 20),plot.title = element_text(size = 22,hjust = 0.5,face = "bold"),panel.border = element_rect(colour = "black", fill=NA, size=1.2),
+        legend.title = element_blank(),legend.text = element_text(colour = "black",size = 18),legend.position = c(.99, .01),legend.justification = c("right", "bottom"),legend.background=element_blank())
+dev.off()
+png(file="PCA12-Pancreas vs Non-cancer (CGI).png",width=800, height=400)
+PCA_Pancreas12 <- pcaplot(vsd_Pancreas,intgroup = "Type",ntop = 1000, ellipse = TRUE, returnData = FALSE,
+                          pcX = 1, pcY = 2, text_labels = FALSE, title = "Pancreatic DMCGIs PC1 vs PC2")
+PCA_Pancreas12+ylim(-10,10)+xlim(-30,22) + 
+  theme(axis.text = element_text(colour = "black",size = 20),axis.title = element_text(size = 20),plot.title = element_text(size = 22,hjust = 0.5,face = "bold"),panel.border = element_rect(colour = "black", fill=NA, size=1.2),
+        legend.title = element_blank(),legend.text = element_text(colour = "black",size = 18),legend.position = c(.99, .01),legend.justification = c("right", "bottom"),legend.background=element_blank())
+dev.off()
+pca_proportion_plot = function(dst, title = NULL){
+  rv = rowVars(assay(dst))
+  select = order(rv, decreasing = T)[seq_len(min(1000, length(rv)))]
+  pca = prcomp(t(assay(dst)[select,]))
+  res = pcascree(pca, type = "pev", pc_nr = 5, paste("Proportion of variance across principal components - ", title, sep="")) + theme_bw()
+  print(res)
+}
+png(file="PCA Proportion-Colorectal vs Non-cancer.png",width=500, height=500)
+pca_proportion_plot(vsd_Colorectal, "Colorectal")+ylim(0,0.6)+ ggtitle("Proportion of PCs - Colorectal")+
+  theme(axis.text = element_text(colour = "black",size = 20),axis.title = element_text(size = 20),plot.title = element_text(size = 22,hjust = 0.5,face = "bold"),panel.border = element_rect(colour = "black", fill=NA, size=1.2),legend.position = "none")
+dev.off()
+png(file="PCA Proportion-Lung vs Non-cancer.png",width=500, height=500)
+pca_proportion_plot(vsd_Lung, "Lung")+ylim(0,0.6)+ ggtitle("Proportion of PCs - Lung")+
+  theme(axis.text = element_text(colour = "black",size = 20),axis.title = element_text(size = 20),plot.title = element_text(size = 22,hjust = 0.5,face = "bold"),panel.border = element_rect(colour = "black", fill=NA, size=1.2),legend.position = "none")
+dev.off()
+png(file="PCA Proportion-Pancreas vs Non-cancer.png",width=500, height=500)
+pca_proportion_plot(vsd_Pancreas, "Pancreas")+ylim(0,0.6)+ ggtitle("Proportion of PCs - Pancreatic")+
+  theme(axis.text = element_text(colour = "black",size = 20),axis.title = element_text(size = 20),plot.title = element_text(size = 22,hjust = 0.5,face = "bold"),panel.border = element_rect(colour = "black", fill=NA, size=1.2),legend.position = "none")
+dev.off()
+
+#Normalized counts
 normalized_Colorectal <- counts(dds_Colorectal,normalized=TRUE)
 normalized_Colorectal <- normalized_Colorectal[rownames(subset(Colorectal_islands_DMRs, log2FoldChange>=0)),]
 normalized_Colorectal <- as.data.frame(t(normalized_Colorectal))
@@ -96,4 +169,3 @@ normalized_Pancreas <- as.data.frame(t(normalized_Pancreas))
 normalized_Pancreas <- setDT(normalized_Pancreas, keep.rownames = TRUE)[]
 normalized_Pancreas$rn <- colData_Pancreas$Type
 write.table(normalized_Pancreas, "Normalized_count_matrix_Pancreas_heatmap.txt",sep = "\t", row.names = FALSE, quote = FALSE)
-
