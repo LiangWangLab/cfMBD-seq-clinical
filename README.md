@@ -4,7 +4,7 @@ Author: Jinyong Huang
 The code within the LiangWanglab/cfMBD-seq-clinical repository is used for quick quality controls and differential methylation analysis of cfMBD-seq data.  
 Bash programming and pre-installation of software are required. Access to a high-performance computing cluster is also recommended. 
 # Requirements
-Computer running a Linux system (≥ 8 GB RAM) Cluster computing is HIGHLY recommended when working with FASTQ/BAM files  
+Computer running a Linux system (≥ 8 GB RAM) Cluster computing is highly recommended when working with FASTQ/BAM files  
 R (Version 4.1.1 or greater) 
 # Linux Modules: 
 fastp (Version 0.20.1);  
