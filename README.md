@@ -1,7 +1,7 @@
 # cfMBD-seq-clinical sample
 Author: Jinyong Huang
 # Introduction
-The code within the LiangWanglab/cfMBD-seq-clinical repository is used for quick quality controls and differential methylation analysis of cfMBD-seq data.  
+The code within the LiangWangLab/cfMBD-seq-clinical repository is used for quick quality controls and differential methylation analysis of cfMBD-seq data.  
 Bash programming and pre-installation of software are required. Access to a high-performance computing cluster is also recommended. 
 # Requirements
 Computer running a Linux system (≥ 8 GB RAM) Cluster computing is highly recommended when working with FASTQ/BAM files  
@@ -31,6 +31,7 @@ Rtsne (Version 0.15).
 2. Quality control using RaMWAS to generate summary QC.  
 ```Rscript RaMWAS.R```    
 3. Generate hg19 CpG features annotation reference.  
-```CpG_annotations_reference.R```  
+```Rscript CpG_annotations_reference.R```  
 4. Call CpG annotations coverage using bedtools and normalize the reads.   
-```./CpG_annotations.sh``` 
+```./Call_CpG_coverage.sh```  
+```Rscript CpG_features_coverage.R``` 
