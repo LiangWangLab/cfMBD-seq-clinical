@@ -14,7 +14,7 @@ BSgenome.hsapiens.UCSC.hg19; RaMWAS (Version 1.12.0); MEDIPS (Version 1.40.0);DE
 ```./fastq_to_bam.sh```  
 2. Quality control using RaMWAS, which generates summary QC, including duplicate rate%, non-CpG coverage, CpG coverage, noise, and peak.  
 ```Rscript RaMWAS.R```    
-3. Generate hg19 CpG features annotation reference.
+3. Generate hg19 CpG features annotation reference.  
 ```CpG_annotations_reference.R```  
 4. Call CpG annotations coverage using bedtools and normalize the reads.   
 ```./CpG_annotations.sh``` 
