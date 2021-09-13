@@ -35,5 +35,5 @@ Rtsne (Version 0.15).
 4. Call CpG annotations coverage using bedtools and normalize the reads.   
 ```./Call_CpG_coverage.sh```  
 ```Rscript CpG_features_coverage.R```  
-5. Differential methylation analysis
-```Rscript DESeq2.R```  
+5. Differential methylation analysis.  
+```Rscript DESeq2.R```   
