@@ -41,5 +41,5 @@ Rtsne (Version 0.15).
 ```Rscript minfiHM450K.R```  
 7. Intersection analysis.  
 ```Rscript Intersection.R```  
-8. Machine learning analysis
+8. Machine learning analysis.  
 ```Rscript glmnet.R```  
