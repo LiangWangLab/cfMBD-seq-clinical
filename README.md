@@ -1,4 +1,4 @@
-# cfMBD-seq-clinical
+# cfMBD-seq-clinical sample
 Author: Jinyong Huang
 # Introduction
 The code within the LiangWanglab/cfMBD-seq-clinical repository is used for quick quality controls and differential methylation analysis of cfMBD-seq data. Bash programming and pre-installation of software are required. Access to a high-performance computing cluster is also recommended. 
