@@ -41,7 +41,7 @@ y_colorectal = factor(ifelse(grepl("COAD", row.names(x_colorectal)), "Colorectal
 rm(coef_colorectal_df)
 coef_colorectal_list <- list()
 AUC_colorectal_list <- double()
-for(i in 1:200){
+for(i in 1:100){
 set.seed(i)
 splitSample_colorectal <- createDataPartition(y_colorectal, p = 0.8, list = FALSE)
 training_x_colorectal <- x_colorectal[splitSample_colorectal,]
@@ -77,7 +77,7 @@ y_lung = factor(ifelse(grepl("LUAD", row.names(x_lung)), "Lung", "NONlung"))
 rm(coef_lung_df)
 coef_lung_list <- list()
 AUC_lung_list <- double()
-for(i in 1:200){
+for(i in 1:100){
   set.seed(i)
   splitSample_lung <- createDataPartition(y_lung, p = 0.8, list = FALSE)
   training_x_lung <- x_lung[splitSample_lung,]
@@ -112,7 +112,7 @@ y_pancreas = factor(ifelse(grepl("PAAD", row.names(x_pancreas)), "Pancreas", "NO
 rm(coef_pancreas_df)
 coef_pancreas_list <- list()
 AUC_pancreas_list <- double()
-for(i in 1:200){
+for(i in 1:100){
   set.seed(i)
   splitSample_pancreas <- createDataPartition(y_pancreas, p = 0.8, list = FALSE)
   training_x_pancreas <- x_pancreas[splitSample_pancreas,]
@@ -140,7 +140,7 @@ coef_pancreas_df_filter <- coef_pancreas_df[apply(coef_pancreas_df, 1, function(
 coef_pancreas_df_filter <- rownames(coef_pancreas_df_filter[-1,])
 ##AUC
 AUC <- data.frame(AUC=c(AUC_colorectal_list,AUC_lung_list,AUC_pancreas_list),
-                  Type=c(rep("COAD",200),rep("LUAD",200),rep("PAAD",200)))
+                  Type=c(rep("COAD",100),rep("LUAD",100),rep("PAAD",100)))
 png(file="AUC.png",width=500, height=500)
 ggplot(AUC, aes(x=Type, y= AUC)) + labs(title="HM450K testing set",x="", y = "AUC")+
   geom_boxplot(width=0.1, fill="steelblue",outlier.colour=NA) + geom_jitter(shape=16, position=position_jitter(0.1),colour = "red")+ ylim(0.95,1) + theme_classic()+ 
